@@ -8,25 +8,28 @@ const storage = [];
 
 router.get('/', (req, res) => {
   res.send({
-    response: "Hello World"
+    response: storage
   });
 });
 
 router.post('/', (req, res) => {
+  storage.push(req.body);
+  console.log("Check 1");
+  console.log(storage);
   res.send({
-    response: "Hello World"
+    response: storage
   });
 });
 
 router.put('/', (req, res) => {
   res.send({
-    response: "Hello World"
+    response: storage
   });
 });
 
 router.delete('/', (req, res) => {
   res.send({
-    response: "Hello World"
+    response: storage
   });
 });
 
