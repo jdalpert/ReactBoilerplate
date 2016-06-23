@@ -1,0 +1,39 @@
+body {
+	background-color: white;
+}
+.applicationFields {
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+	margin-left: 50px;
+}
+.submitButton{
+	margin-left: 150px;
+}
+.resultsTable {
+	display: table-header-group;
+}
+tr:nth-child(even){background-color: #ffcc99}
+
+th{
+	text-align: center;
+	border: 1px solid black;
+}
+td{
+	border: 1px solid black
+}
+.deleteButton{
+	color: white;
+	background-color: red;
+}
+.editButton{
+	color: white;
+	background-color: green;
+}
+.name {
+}
+.address{
+}
+.qoute{
+
+}
