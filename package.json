@@ -26,7 +26,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.9.0",
     "concurrently": "^2.1.0",
-    "mocha": "^2.5.3",
+    "mocha": "*",
+    "chai": "*",
     "webpack": "^1.13.1"
   },
   "dependencies": {

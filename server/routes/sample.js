@@ -14,16 +14,13 @@ router.get('/', (req, res) => {
     console.log(lists);
     res.send({response : lists});
   });
-
 });
 
 router.post('/', (req, res) => {
   var test = new testSchema();
-
   test.name = req.body.name;
   test.address = req.body.address;
   test.quote = req.body.quote; 
-
   test.save(function(err) {
     if (err) throw err;
     console.log('test sent to db');

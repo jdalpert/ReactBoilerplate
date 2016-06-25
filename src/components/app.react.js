@@ -10,7 +10,6 @@ export default class App extends Component {
     super(props);
     this.state = {
       response: []
-
     };
   }
   
@@ -18,7 +17,9 @@ export default class App extends Component {
     return (
       <div className="applicationFields">
         <br/>
-        <h1> Node JS Testing </h1>
+        <h1> 
+          Node JS Testing 
+        </h1>
         <br/>
         <Child/>
         <br/>

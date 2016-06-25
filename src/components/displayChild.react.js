@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from "react-redux";
 import * as actions from "../actions/change_main.action";
 
@@ -11,6 +11,11 @@ export default class DisplayChild extends Component {
 		}
 	}
 	
+	static contextTypes = {
+		router: PropTypes.object
+	};
+
+
 	componentDidMount(){
 		this.props.grab_data();
 	}
@@ -21,33 +26,50 @@ export default class DisplayChild extends Component {
 	}
 
 
+	_handleEdit = (entry) =>{
+		
+		//let obj = {};
+		//obj[event.target.name] = event.target.value;
+		//console.log(entry);
+		this.context.router.push('/update');
+		//this.props.grab_entry(entry);
+		//this.props.edit_data(entry);
+		//this.props.grab_data();
+	}
+
 	render() {
 		let entryList = "";
+		//let entryNum = -1;
 		if(!(typeof this.props.storage === "undefined")){
-			entryList = this.props.storage.map((entry, index) => {  
+			entryList = this.props.storage.map((entry, index) => {
+			//entryNum++;
 			return(
 					<tr 
 						key={index}
-						className="resultsEntry">
-						<td>
-						{entry.name}
+						className="resultsEntry"
+					>
+						<td value={entry.name}>
+							{entry.name}
 						</td> 
-						<td>
-						{entry.address} 
+						<td value={entry.address}>
+							{entry.address} 
 						</td>
-						<td>
-						{entry.quote}
+						<td value={entry.quote}>
+							{entry.quote}
 						</td> 
 						<td>
 						<button 
 							type="button"
-							className="editButton"> 
+							className="editButton"
+							onClick={() => this._handleEdit(entry)}
+						>
 							Edit
 						</button>
 						<button 
 							type="button"
 							className="deleteButton"
-							onClick={() => this._handleDelete(entry._id)}> 
+							onClick={() => this._handleDelete(entry._id)}
+						>
 							Delete
 						</button>
 						</td>
@@ -56,18 +78,17 @@ export default class DisplayChild extends Component {
 		}
 		return (
 			<div>
-				<table
-				className="resultsTable">
+				<table className="resultsTable">
 					<thead>
 						<tr>
 							<th>
-							Name
+								Name
 							</th> 
 							<th>
-							Address
+								Address
 							</th>
 							<th>
-							Quote
+								Quote
 							</th>
 							<th>
 							</th> 
@@ -83,9 +104,15 @@ export default class DisplayChild extends Component {
 }
 
 function mapStateToProps(state) {
-	return {
+	//if(!(typeof state.list.data.response === "undefined")){
+		return {
 			storage: state.list.data.response
-	};
+		};
+	/*}else{
+		return {
+			storage: state.list.data
+		};
+	}*/
 }
 
 export default connect(mapStateToProps, actions)(DisplayChild);

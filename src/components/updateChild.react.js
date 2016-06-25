@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component , PropTypes } from 'react';
 import { connect } from "react-redux";
+import { Route, Link } from 'react-router';
 import * as actions from "../actions/change_main.action";
 
-export default class Child extends Component {
+export default class UpdateChild extends Component {
 
 	constructor(props) {
 		super(props);
@@ -12,6 +13,10 @@ export default class Child extends Component {
 				quote: "",
 		};
 	}
+
+	static contextTypes = {
+		router: PropTypes.object
+	};
 
 	_handleChange = (event) =>{
 		let obj = {};
@@ -72,8 +77,9 @@ export default class Child extends Component {
 					className="submitButton" 
 					onClick={this._handleClick} 
 				>
-					Submit
+					Update
 				</button>
+			<h1>this</h1>
 			</div>
 		);  
 	}
@@ -85,4 +91,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(Child);
+export default connect(mapStateToProps, actions)(UpdateChild);

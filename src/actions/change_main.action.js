@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { CHANGE,  GRAB, DELETE } from "./constants";
+import { CHANGE,  GRAB, DELETE, EDIT, GRABE } from "./constants";
 
 export function grab_data() {
 	const data = Axios.get("/api/v0/sample");
@@ -23,3 +23,19 @@ export function delete_data(_id) {
 	};
 }
 
+export function edit_data(contact) {
+	const data = Axios.delete("/api/v0/sample/", contact);
+	return {
+		type: DELETE,
+		payload: data
+	};
+}
+
+export function grab_entry(obj) {
+	console.log(obj);
+	let data = {data: {response: [obj]}};
+	return {
+		type: GRABE,
+		payload: data
+	};
+}
