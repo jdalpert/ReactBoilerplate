@@ -10,10 +10,10 @@ import Reducers from './reducers/root.reducer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-render(<Provider 
+render(<Provider
 	store={createStoreWithMiddleware(Reducers)}>
-	<Router 
-	history={hashHistory} 
-	routes={Routes} />
-	</Provider>, 
+	<Router
+		history={hashHistory}
+		routes={Routes} />
+	</Provider>,
 	document.getElementById('container'));

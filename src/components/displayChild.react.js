@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from "react-redux";
+import { Route, Link } from 'react-router';
 import * as actions from "../actions/change_main.action";
 
-export default class DisplayChild extends Component {
+export class DisplayChild extends Component {
 
 	constructor(props) {
 		super(props);
@@ -10,7 +11,7 @@ export default class DisplayChild extends Component {
 			storage: []
 		}
 	}
-	
+
 	static contextTypes = {
 		router: PropTypes.object
 	};
@@ -27,45 +28,36 @@ export default class DisplayChild extends Component {
 
 
 	_handleEdit = (entry) =>{
-		
-		//let obj = {};
-		//obj[event.target.name] = event.target.value;
-		//console.log(entry);
-		this.context.router.push('/update');
-		//this.props.grab_entry(entry);
-		//this.props.edit_data(entry);
-		//this.props.grab_data();
+		this.context.router.push('/update/' + entry._id );
 	}
 
 	render() {
 		let entryList = "";
-		//let entryNum = -1;
 		if(!(typeof this.props.storage === "undefined")){
 			entryList = this.props.storage.map((entry, index) => {
-			//entryNum++;
 			return(
-					<tr 
+					<tr
 						key={index}
 						className="resultsEntry"
 					>
 						<td value={entry.name}>
 							{entry.name}
-						</td> 
+						</td>
 						<td value={entry.address}>
-							{entry.address} 
+							{entry.address}
 						</td>
 						<td value={entry.quote}>
 							{entry.quote}
-						</td> 
+						</td>
 						<td>
-						<button 
+						<button
 							type="button"
 							className="editButton"
 							onClick={() => this._handleEdit(entry)}
 						>
 							Edit
 						</button>
-						<button 
+						<button
 							type="button"
 							className="deleteButton"
 							onClick={() => this._handleDelete(entry._id)}
@@ -83,7 +75,7 @@ export default class DisplayChild extends Component {
 						<tr>
 							<th>
 								Name
-							</th> 
+							</th>
 							<th>
 								Address
 							</th>
@@ -91,7 +83,7 @@ export default class DisplayChild extends Component {
 								Quote
 							</th>
 							<th>
-							</th> 
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -99,20 +91,14 @@ export default class DisplayChild extends Component {
 					</tbody>
 			</table>
 			</div>
-		);  
+		);
 	}
 }
 
 function mapStateToProps(state) {
-	//if(!(typeof state.list.data.response === "undefined")){
-		return {
-			storage: state.list.data.response
-		};
-	/*}else{
-		return {
-			storage: state.list.data
-		};
-	}*/
+	return {
+		storage: state.list.data.response
+	};
 }
 
 export default connect(mapStateToProps, actions)(DisplayChild);

@@ -9,12 +9,9 @@ import UpdateChild from './components/updateChild.react';
 
 
 export default (
-	
+
 	<Route path="/" component={App}>
-		<Route path="/child" component={Child} />
-		<Route path="/displayChild" component={DisplayChild} />
-		<Route path="/update" component={UpdateChild} />
+		<IndexRoute component={Child}/>
+		<Route path="/update/:id" component={UpdateChild} />
 	</Route>
 );
-
-
