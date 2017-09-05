@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "webpack --watch & nodemon server.js",
+    "basic": "brew install mongodb & sudo npm install -g nodemon",
+    "setup": "mkdir ../data",
+    "start": "mongod -dbpath ../data & webpack --watch & nodemon server.js",
     "start:windows": "node ./node_modules/concurrently/src/main.js --kill-others \"webpack --watch\" \"nodemon server.js\""
   },
   "repository": {
@@ -29,6 +31,7 @@
     "concurrently": "^2.1.0",
     "mocha": "*",
     "mongoose": "^4.11.10",
+    "nodemon": "^1.12.0",
     "webpack": "^1.13.1"
   },
   "dependencies": {
@@ -41,6 +44,7 @@
     "lodash": "^3.10.1",
     "mongoose": "^4.11.10",
     "morgan": "^1.7.0",
+    "nodemon": "^1.12.0",
     "react": "^15.1.0",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.1.0",
